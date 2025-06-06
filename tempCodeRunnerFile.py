@@ -1,0 +1,1 @@
+image.load(f'img/bird{num}.png')

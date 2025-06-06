@@ -23,7 +23,7 @@ ground_scroll = 0
 scroll_speed = 4
 flying = False
 game_over = False
-pipe_gap = 250
+pipe_gap = 300
 pipe_frequency = 1500 #ms
 last_pipe = pygame.time.get_ticks() - pipe_frequency
 score = 0
@@ -63,7 +63,7 @@ class Bird(pygame.sprite.Sprite):
         self.index = 0
         self.counter = 0
         for num in range (1,4):
-            img = pygame.image.load(f'img/bird{num}.png')
+            img = pygame.transform.scale(pygame.image.load(f'img/bird{num}.png'), (100, 100))
             self.images.append(img)
         self.image = self.images[self.index]
         self.rect = self.image.get_rect()
@@ -179,15 +179,15 @@ while run:
     screen.blit(ground_img, (ground_scroll, screen_height - ground_height))
     
     #check score
-    if len(pipe_group) > 0:
-        if bird_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.left\
-            and bird_group.sprites()[0].rect.right < pipe_group.sprites()[0].rect.right\
-            and pass_pipe == False:
-            pass_pipe = True
-        if pass_pipe == True:
-            if bird_group.sprites()[0].rect.left > pipe_group.sprites()[0].rect.right:
-                score +=1
+    for pipe in pipe_group:
+        if pipe.rect.bottom >= screen_height / 2:  # only consider bottom pipes
+            if flappy.rect.left > pipe.rect.right and pass_pipe == False:
+                score += 1
+                pass_pipe = True
+            if flappy.rect.left < pipe.rect.right:
                 pass_pipe = False
+            break  # Only check one pipe per frame
+
     
     draw_text(str(score),font, white, int(screen_width/2), 20)
 
