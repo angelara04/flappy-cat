@@ -11,7 +11,7 @@ screen_width = 700
 screen_height = 800
 
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption('Flappy Bird')
+pygame.display.set_caption('Flappy Cat')
 
 font = pygame.font.SysFont('Bauhaus 93', 60)
 
@@ -56,6 +56,7 @@ def reset_game():
     flappy.image = flappy.images[0]
     return score
 
+#Class for cat, which acts as the flying bird 
 class Bird(pygame.sprite.Sprite):
     def __init__(self,x,y):
         pygame.sprite.Sprite.__init__(self)
