@@ -7,8 +7,8 @@ pygame.init()
 clock = pygame.time.Clock()
 fps = 60
 
-screen_width = 700
-screen_height = 800
+screen_width = 900
+screen_height = 700
 
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Flappy Cat')
@@ -30,7 +30,7 @@ score = 0
 pass_pipe = False
 
 #load images
-bg = pygame.image.load('img/bg.png')
+bg = pygame.image.load('img/bg1.gif')
 bg = pygame.transform.scale(bg, (screen_width, screen_height))
 button_image = pygame.image.load('img/restart.png')
 button_image = pygame.transform.scale(button_image, (button_image.get_width()*2,button_image.get_height()*2))
